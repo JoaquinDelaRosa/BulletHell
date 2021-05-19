@@ -28,7 +28,7 @@ class Bullet
         bool hasFired = false;
         int timesFired = 0;
         // Helper functions
-        Vector getMotionVector(Vector position, Vector angle, Vector radius, Vector orientation);
+        Vector getMotionVector(Vector position, Vector angle, Vector radius);
 
         Shape fireShape = Shape();
         Bullet* childTemplate = nullptr;
