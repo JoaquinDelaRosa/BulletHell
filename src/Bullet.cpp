@@ -72,12 +72,12 @@ void Bullet::update(float time){
     Vector radius = this->frad.evaluate(time);
     Vector orientation = this->forient.evaluate(time);
 
-    Vector motion = this->getMotionVector(position, angle, radius, orientation);
+    Vector motion = this->getMotionVector(position, angle, radius);
     sf::Vector2f m = sf::Vector2f(motion.x, motion.y);
     this->shape->setPosition(m);
 }
 
-Vector Bullet::getMotionVector(Vector position, Vector angle, Vector radius, Vector orientation){
+Vector Bullet::getMotionVector(Vector position, Vector angle, Vector radius){
     position.x += radius.x * cos(angle.x);
     position.y += radius.y * sin(angle.y);
 
