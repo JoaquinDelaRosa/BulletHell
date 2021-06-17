@@ -12,6 +12,8 @@ class Window
         virtual Vector getSize();
         virtual void draw(const sf::Drawable& entity);
 
+        sf::Window* getWindow();
+
 };
 
 #endif // WINDOW_H

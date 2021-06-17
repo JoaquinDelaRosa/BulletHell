@@ -130,7 +130,7 @@ Vector Polynomial::evaluateTerms(float t){
 }
 
 
-void Polynomial::makeContinuous(){
+void Polynomial::makeContinuous(float offset){
     for(int i = 1; i < (int) this->children.size(); i ++){
         if(i == 1){
             this->children[i]->addCoefficient(this->evaluate(this->upperBound, false), 0);

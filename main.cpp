@@ -6,9 +6,11 @@
 #include <SFML/Graphics.hpp>
 #include <bits/stdc++.h>
 #include<GameEntities.h>
+#include<BulletManager.h>
 #include<chrono>
 #include<Vector.h>
 
+#include <SamplePreset.h>
 #define WIDTH 1000
 #define HEIGHT 1000
 
@@ -22,12 +24,11 @@ int main()
 
     BulletManager bulletManager;
 
-    Vector v = Vector(1, 2);
-    Vector q = Vector(1, 3);
-    v+=q;
-
     while (renderWindow.isOpen())
     {
+        std::chrono::steady_clock::time_point current = std::chrono::steady_clock::now();
+        int time = std::chrono::duration_cast<std::chrono::milliseconds>(current - start).count();
+
         sf::Event event;
         while (renderWindow.pollEvent(event))
         {
@@ -36,6 +37,14 @@ int main()
                     renderWindow.close();
                     break;
                 case sf::Event::Resized:
+                    break;
+                case sf::Event::MouseButtonPressed:
+                    if(event.mouseButton.button == sf::Mouse::Left){
+                        sf::Vector2i pos = sf::Mouse::getPosition(*window.getWindow());
+                        Vector s =  window.getSize();
+                        bulletManager.loadContainer(new SamplePreset(), float(time) / 1000.0f, Vector(pos.x - s.x / 2, pos.y - s.y / 2));
+                    }
+
                     break;
                 default:
                     break;
@@ -46,8 +55,6 @@ int main()
         renderWindow.clear();
         renderWindow.setView(view);
 
-        std::chrono::steady_clock::time_point current = std::chrono::steady_clock::now();
-        int time = std::chrono::duration_cast<std::chrono::milliseconds>(current - start).count();
         bulletManager.draw(window, float(time) / 1000.0f);
         bulletManager.update(float(time) / 1000.0f);
 

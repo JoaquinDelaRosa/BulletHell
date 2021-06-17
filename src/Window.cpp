@@ -26,3 +26,7 @@ Vector Window::getSize(){
 void Window::draw(const sf::Drawable& entity){
     this->window->draw(entity);
 }
+
+sf::Window* Window::getWindow(){
+    return this->window;
+}

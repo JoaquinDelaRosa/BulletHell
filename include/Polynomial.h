@@ -31,7 +31,7 @@ class Polynomial
         void addCoefficient(Vector coeff, int degree, bool addMode = false);
         void addPolynomial(Polynomial* p);
         void addTerm(Polynomial* p);
-        void makeContinuous();
+        void makeContinuous(float offest = 0);
 
         enum wrappers{SineX = 1, SineY = 2, SqrtX = 4, SqrtY = 8};
 
